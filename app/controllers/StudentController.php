@@ -10,7 +10,7 @@
             echo '<p>Menampilkan form tambah siswa</p>';
             }
 
-            public function create();
+            public function create()
             {
             echo '<h1>Tambah Siswa</h1>';
             echo '<p>Menampilkan form tambah siswa</p>';
