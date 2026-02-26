@@ -13,6 +13,7 @@ class Router
         $this->routes[] = [
             'method' => $method,
             'uri' => $uri,
+            'controller' => $controller,
             'function' => $function,
         ]; 
     }
@@ -34,11 +35,11 @@ class Router
             if (preg_match($pattern, $uri, $matches)) {
                 require_once './app/controllers/' . $route['controller'] . '.php';
                 array_shift($matches);
-                $controllerClass = 'App\\Controllers\\' . $route['controler'];
+                $controllerClass = 'App\\Controllers\\' . $route['controller'];
                 $controller = new $controllerClass();
                 
-                $function = $router['function'];
-                $controller->$function();
+                $function = $route['function'];
+                call_user_func_array([$controller, $function], $matches);
 
                 return; 
             }
