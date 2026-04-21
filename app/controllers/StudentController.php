@@ -1,7 +1,7 @@
 <?php
 namespace App\Controllers;
 require_once '../app/core/Controller.php';
-require_once'../app/models/Student.php';
+require_once '../app/models/Student.php';
 
 use App\core\Controller;
 use App\models\Student;
@@ -31,13 +31,18 @@ class StudentController extends Controller
         $studentModel = new Student();
         $student = $studentModel->getStudent($id);
         $this->view('students.show', [
-            'student'=> $student
+            'student' => $student
         ]);
     }
 
     public function edit(string $id)
     {
         $this->view('students.edit');
+    }
+    public function store()
+    {
+        $studentModel = new Student();
+        $studentModel->insert($_POST);
     }
 
 }
